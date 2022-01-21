@@ -1,5 +1,5 @@
 <html>
 <script>
- window.location.href='login.php';
+ window.location.href='Index/index.php';
 </script>
 </html>

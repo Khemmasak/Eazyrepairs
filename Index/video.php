@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-lg-4 col-xl-2 col-sm-4">
                                 <div class="testimonial_slider_img">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wJnyutrX8DQ"
+                                    <iframe width="560" height="315" src=""
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-lg-4 col-xl-2 col-sm-4">
                                 <div class="testimonial_slider_img">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wJnyutrX8DQ"
+                                    <iframe width="560" height="315" src=""
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-lg-4 col-xl-2 col-sm-4">
                                 <div class="testimonial_slider_img">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wJnyutrX8DQ"
+                                    <iframe width="560" height="315" src=""
                                         frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
