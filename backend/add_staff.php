@@ -3,7 +3,7 @@ include "../chksession_user.php";
 include "h.php";
 include "navbar.php";
 include "../inc/connect.php"; //เชื่อมต่อฐานข้อมูล
-
+require "../inc/connect2.php";
 /*
     $sql="select * from  shop where id_sp='$sess_idshop' ";
     $result=mysql_db_query($dbname,$sql);
