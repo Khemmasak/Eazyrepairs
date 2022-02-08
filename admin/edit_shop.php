@@ -153,6 +153,35 @@ include "../inc/connect.php"; //เชื่อมต่อฐานข้อม
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>กำหนดระยะเวลารับเครื่องและชำระเงินทางร้าน</label>
+                                            <select class="form-control" name="sp_datepay" required>
+                                                <option value="" disabled selected>กรุณากำหนดระยะเวลารับเครื่องและชำระเงินทางร้าน</option>
+                                                <?php
+                                                for($i=1;$i<=30;$i++){?>
+                                                <option value="<?php echo $i?>"><?php echo $i?>วัน</option>
+                                               <?php }?>
+                                            </select>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>กำหนดวันรับประกันทางร้าน</label>
+                                            <select class="form-control" name="sp_dateguarantee" required>
+                                                <option value="" disabled selected>กรุณากำหนดวันรับประกันทางร้าน</option>
+                                                <?php
+                                                for($i=1;$i<=30;$i++){?>
+                                                <option value="<?php echo $i?>"><?php echo $i?>วัน</option>
+                                               <?php }?>
+                                            </select>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="card-footer">
                                     <button type="button"  onclick="window.location.href='repair.php'" class="btn btn-danger">ย้อนกลับ</button>
                                     <button type="submit" class="btn btn-success float-right">บันทึกข้อมูล</button>

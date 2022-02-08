@@ -10,6 +10,8 @@ $pass = MD5($_POST[pass]);
 $fname = $_POST[fname];
 $lname = $_POST[lname];
 $pack = $_POST[pack];
+$sp_datepay = $_POST[sp_datepay];
+$sp_dateguarantee = $_POST[sp_dateguarantee];
 $datetime = date('Y-m-d h:i:s');
 $id_sp = $_GET[id];
 $status = $_GET[status];
@@ -87,7 +89,7 @@ $date_end = date("Y-m-d H:i:s", mktime(date("H",$strCurrDate)+0, date("i",$strCu
     </script>"); exit();
 	}
 	//$sql = "INSERT INTO `eazyrepair_appdb`.`shop` (`id_sp`, `sp_name`, `sp_logo`, `sp_tax`, `sp_username`, `sp_pass`, `sp_fname`, `sp_lname`, `sp_pack`, `sp_dateend`, `sp_status`, `datesave`) VALUES (NULL, \'\', \'\', \'\', \'a;kljsdfphsdfhn\', \'s21351\', \'sdfgnsdfgnmfsdgn\', \'sdfgnsdgnsdgnsdgn\', \'90\', \'2021-02-26 00:00:00\', \'0\', \'2021-02-22\');";
-	$sql="insert into shop values('$id','','','','$user','$pass','$fname','$lname','$pack','$datetime','0','0','$datetime')";
+	$sql="insert into shop values('$id','','','','$user','$pass','$fname','$lname','$pack','$datetime','0','0','$sp_datepay','$sp_dateguarantee','$datetime')";
 	$result=mysql_db_query($dbname,$sql);
 	if ($result) {
 		$sql3="select * from shop where sp_username='$user' and sp_pass='$pass' ";
