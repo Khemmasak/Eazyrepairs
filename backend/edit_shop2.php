@@ -24,6 +24,8 @@ $phone_sp = $_POST[phone_sp];
 $email_sp = $_POST[email_sp];
 $fb_sp = $_POST[fb_sp];
 $line_sp = $_POST[line_sp];
+$sp_datepay = $_POST[sp_datepay];
+$sp_dateguarantee = $_POST[sp_dateguarantee];
 $logo=$_FILES['file_logo']['tmp_name'];
 $logo_name=$_FILES['file_logo']['name'];
 $datetime = date('Ymd_His');
@@ -90,7 +92,7 @@ if($_POST[pass_sp]){
 	$sql4="update shop set sp_name='$name_sp', sp_tax= '$tax_sp' where id_sp='$id_sp' ";
 	$result4=mysql_db_query($dbname,$sql4);
 
-	$sql3="update add_sp set sp_add = '$add_sp', pos_sp = '$post_add', sp_phone ='$phone_sp', sp_email= '$email_sp', sp_fb ='$fb_sp', sp_line= '$line_sp' where id_sp='$id_sp' ";
+	$sql3="update add_sp set sp_add = '$add_sp', pos_sp = '$post_add', sp_phone ='$phone_sp', sp_email= '$email_sp', sp_fb ='$fb_sp', sp_line= '$line_sp' , sp_datepay='$sp_datepay',sp_dateguarantee='$sp_dateguarantee' where id_sp='$id_sp' ";
 
 	$result3=mysql_db_query($dbname,$sql3);
 

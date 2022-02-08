@@ -15,6 +15,8 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
     $r4 = mysql_fetch_array($result4);
     $id_sp=$r4['id_sp'];
     $sp_name=$r4['sp_name'];
+    $sp_datepay=$r4['sp_datepay'];
+    $sp_dateguarantee=$r4['sp_dateguarantee'];
 
 
    
@@ -114,20 +116,23 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
                         <h5><i class="fas fa-info"></i> โปรดระบุประเภทใบรับซ่อมสินค้าที่ต้องการปริ้น</h5>
                         <form action="invoice_report.php" method="GET">
                             <div class="row">
-                            <div class="col">
-                            <label for="">รหัสลูกค้า</label>
-                            <input type="text" class="form-control" name="id_cus" id="id_cus" value="<?php echo "$id_cus";?>" readonly >
-                            </div>
-                            <div class="col">
-                            <label for="">รหัสใบแจ้งซ่อม</label>
-                            <input type="text" class="form-control" name="id_ser" id="id_ser" value="<?php echo "$id_ser";?>" readonly>
+                                <div class="col">
+                                    <label for="">รหัสลูกค้า</label>
+                                    <input type="text" class="form-control" name="id_cus" id="id_cus"
+                                        value="<?php echo "$id_cus";?>" readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="">รหัสใบแจ้งซ่อม</label>
+                                    <input type="text" class="form-control" name="id_ser" id="id_ser"
+                                        value="<?php echo "$id_ser";?>" readonly>
 
-                            </div>
-                            <div class="col">
-                            <label for="">รหัสอุปกรณ์</label>
-                            <input type="text" class="form-control" name="id_devi" id="id_devi" value="<?php echo "$id_devi";?>" readonly>
-                            </div>
-                            
+                                </div>
+                                <div class="col">
+                                    <label for="">รหัสอุปกรณ์</label>
+                                    <input type="text" class="form-control" name="id_devi" id="id_devi"
+                                        value="<?php echo "$id_devi";?>" readonly>
+                                </div>
+
                                 <div class="col">
                                     <label for="">รูปแบบที่ต้องการปริ้น</label>
                                     <select class="form-control" name="type_print" id="type_print" required>
@@ -140,7 +145,7 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
 
                                 <div class="col">
                                     <label>ยืนยัน</label>
-                                    <button  type="submit" class="form-control btn btn-info">ยืนยัน</button>
+                                    <button type="submit" class="form-control btn btn-info">ยืนยัน</button>
                                 </div>
                             </div>
                         </form>
@@ -152,8 +157,8 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
                         <div class="row">
                             <div class="col-12">
                                 <h2 class="page-header">
-                                    <img src="../backend/images/<?php echo $sp_logo;?>"
-                                        style="width:64px; height:64px;" alt="<?php echo $sp_name;?>">
+                                    <img src="../backend/images/<?php echo $sp_logo;?>" style="width:64px; height:64px;"
+                                        alt="<?php echo $sp_name;?>">
                                     <?php echo $sp_name;?>
                                     <small class="float-right">ใบรับซ่อมสินค้า</small>
                                 </h2>
@@ -264,12 +269,12 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
                                             <td class="text-right"><?php echo number_format($ser_price,2);?> บาท</td>
                                         </tr>
                                         <?php if(!$sp_tax){ ?>
-                                            <?php }else{ ?>
-                                            <tr>
-                                                <th>ภาษี7% :</th>
-                                                <td class="text-right"><?php echo number_format($ser_price2,2); ?> บาท</td>
-                                            </tr>
-                                            <?php }?>
+                                        <?php }else{ ?>
+                                        <tr>
+                                            <th>ภาษี7% :</th>
+                                            <td class="text-right"><?php echo number_format($ser_price2,2); ?> บาท</td>
+                                        </tr>
+                                        <?php }?>
                                         <tr>
                                             <th>ราคาสุทธิ :</th>
                                             <td class="text-right"><?php echo number_format($ser_netprice,2); ?> บาท
@@ -289,13 +294,17 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
                                         <ol style="font-size:14px;" start=1>
                                             <lh> หมายเหตุ</lh>
                                             <li>ลูกค้าต้องนำใบรับซ่อมนี้ มาแสดงทุกครั้งที่มารับเครื่อง</li>
-                                            <li>ลูกค้าจะต้องมารับเครื่องคืน และชำระสินค้าภายใน 30 วัน
+                                            <li>ลูกค้าจะต้องมารับเครื่องคืน และชำระสินค้าภายใน <?php if($sp_datepay="0"){
+                                    echo "30"; }else{echo $sp_datepay;}?> วัน
                                                 นับตั้งแต่วันที่ทางร้านแจ้งว่าซ่อมเสร็จเรียบร้อย</li>
-                                            <li>หากลูกค้าไม่มารับเครื่องซ่อม ภายใน 30 วัน หลังจากที่ทางร้านได้แจ้งไป
+                                            <li>หากลูกค้าไม่มารับเครื่องซ่อม ภายใน <?php if($sp_datepay="0"){
+                                    echo "30"; }else{echo $sp_datepay;}?> วัน หลังจากที่ทางร้านได้แจ้งไป
                                                 ถือว่าลูกค้าได้ยินยอมให้ทางร้านนำเครื่องไปบริจาค หรือ
                                                 ดำเนินการใดตามที่ทางร้านเห็นสมควร
                                                 โดยที่ลูกค้าไม่ติดใจเรียกร้องใดๆ ทั้งสิ้น</li>
-                                            <li>ทางร้านรับประกันเฉพาะค่าแรง ในอาการเดิมที่ซ่อมไป ภายในระยะเวลา 30 วัน
+                                            <li>ทางร้านรับประกันเฉพาะค่าแรง ในอาการเดิมที่ซ่อมไป ภายในระยะเวลา
+                                                <?php if($sp_dateguarantee="0"){ echo "30";}else{ echo $sp_dateguarantee;}?>
+                                                วัน
                                                 (การซ่อมเครื่องที่ตกกระแทก
                                                 หรือ ตกน้ำ หรือ โดนความชื้น หรือ เคยซ่อมที่อื่นมาแล้ว หรือ
                                                 ลูกค้าแกะเครื่องเองมาก่อนแล้ว
@@ -346,8 +355,9 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
                         </table>
                         <!-- this row will not appear when printing -->
                         <div class="row no-print">
-                        <?php if(!$type_print){?>
-                                    <button type="button" class="btn btn-danger disabled"><i class="fas fa-print"></i>โปรดระบุรูปแบบการปริ้นก่อนครับ</button>
+                            <?php if(!$type_print){?>
+                            <button type="button" class="btn btn-danger disabled"><i
+                                    class="fas fa-print"></i>โปรดระบุรูปแบบการปริ้นก่อนครับ</button>
                             <?php }else{?>
                             <div class="col-12">
                                 <?php if($type_print == 3){?>
@@ -355,11 +365,11 @@ $sql4="SELECT * from  shop where id_sp='$sess_idshop'";
                                     rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i>
                                     พิมพ์เฉพาะต้นฉบับ</a>
                                 <?php }elseif($type_print == 1){?>
-                                    <a href="new_report.php?id_ser=<?php echo"$id_ser";?>&id_cus=<?php echo"$id_cus";?>&id_devi=<?php echo"$id_devi";?>&type_print=<?php echo "$type_print";?>"
+                                <a href="new_report.php?id_ser=<?php echo"$id_ser";?>&id_cus=<?php echo"$id_cus";?>&id_devi=<?php echo"$id_devi";?>&type_print=<?php echo "$type_print";?>"
                                     rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i>
                                     พิมพ์เฉพาะสำเนา</a>
                                 <?php }else {?>
-                                    <a href="new_report.php?id_ser=<?php echo"$id_ser";?>&id_cus=<?php echo"$id_cus";?>&id_devi=<?php echo"$id_devi";?>&type_print=<?php echo "$type_print";?>"
+                                <a href="new_report.php?id_ser=<?php echo"$id_ser";?>&id_cus=<?php echo"$id_cus";?>&id_devi=<?php echo"$id_devi";?>&type_print=<?php echo "$type_print";?>"
                                     rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i>
                                     พิมพ์ทั้งต้นฉบับและสำเนา</a>
                                 <?php }?>

@@ -10,6 +10,8 @@ require "../inc/connect.php";
     $r4 = mysql_fetch_array($result4);
     $id_sp=$r4['id_sp'];
     $sp_name=$r4['sp_name'];
+    $sp_datepay=$r4['sp_datepay'];
+    $sp_dateguarantee=$r4['sp_dateguarantee'];
 
 
     $id_cus = $_GET['id_cus'];
@@ -165,11 +167,11 @@ require "../inc/connect.php";
                                         <?php echo $sp_name;?>
                                         <small class="float-right">ใบรับซ่อมสินค้า</small><br>
                                         <?php if($type_print == 3){?>
-                                            <small class="float-right">ต้นฉบับ</small>
+                                        <small class="float-right">ต้นฉบับ</small>
                                         <?php }elseif($type_print == 1){?>
-                                            <small class="float-right">สำเนา</small>
+                                        <small class="float-right">สำเนา</small>
                                         <?php }else {?>
-                                            <small class="float-right">ต้นฉบับ / สำเนา</small>
+                                        <small class="float-right">ต้นฉบับ / สำเนา</small>
                                         <?php }?>
                                         <br>
                                     </h2>
@@ -183,7 +185,7 @@ require "../inc/connect.php";
                                     <address>
                                         <strong>ร้าน <?php echo $sp_name;?></strong><br>
                                         <?php if(!$sp_tax){ ?>
-                                        <?php }else{ ?>เลขประจำตัวผู้เสียภาษี  <?php echo $sp_tax;?>
+                                        <?php }else{ ?>เลขประจำตัวผู้เสียภาษี <?php echo $sp_tax;?>
                                         <?php  } ?><br>
                                         ที่อยู่ <?php echo $sp_add;?><br>ตำบล <?php echo $dis_sp;?><br>
                                         อำเภอ <?php echo $ampher_sp;?><br>จังหวัด <?php echo $pro_sp;?><br>รหัสไปรษณี
@@ -250,11 +252,12 @@ require "../inc/connect.php";
                                                     <br>&nbsp;&nbsp;บันทึกเพิ่มเติม <?php echo $ser_other;?>
                                                 </td>
                                                 <td style="text-align:center;">1</td>
-                                                <td colspan="2" style="text-align:center;"><?php echo number_format($ser_price,2);?> บาท</td>
+                                                <td colspan="2" style="text-align:center;">
+                                                    <?php echo number_format($ser_price,2);?> บาท</td>
                                             </tr>
                                         </tbody>
                                     </table>
-                               
+
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -275,18 +278,21 @@ require "../inc/connect.php";
                                         <table class="table">
                                             <tr>
                                                 <th>ราคา :</th>
-                                                <td class="text-right"><?php echo number_format($ser_price,2);?> บาท</td>
+                                                <td class="text-right"><?php echo number_format($ser_price,2);?> บาท
+                                                </td>
                                             </tr>
                                             <?php if(!$sp_tax){ ?>
                                             <?php }else{ ?>
                                             <tr>
                                                 <th>ภาษี7% :</th>
-                                                <td class="text-right"><?php echo number_format($ser_price2,2); ?> บาท</td>
+                                                <td class="text-right"><?php echo number_format($ser_price2,2); ?> บาท
+                                                </td>
                                             </tr>
                                             <?php }?>
                                             <tr>
                                                 <th>ราคาสุทธิ :</th>
-                                                <td class="text-right"><?php echo number_format($ser_netprice,2); ?> บาท</td>
+                                                <td class="text-right"><?php echo number_format($ser_netprice,2); ?> บาท
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>
@@ -302,13 +308,17 @@ require "../inc/connect.php";
                             <ol style="font-size:14px;" start=1>
                                 <lh> หมายเหตุ</lh>
                                 <li>ลูกค้าต้องนำใบรับซ่อมนี้ มาแสดงทุกครั้งที่มารับเครื่อง</li>
-                                <li>ลูกค้าจะต้องมารับเครื่องคืน และชำระสินค้าภายใน 30 วัน
+                                <li>ลูกค้าจะต้องมารับเครื่องคืน และชำระสินค้าภายใน <?php if($sp_datepay="0"){
+                                    echo "30"; }else{echo $sp_datepay;}?> วัน
                                     นับตั้งแต่วันที่ทางร้านแจ้งว่าซ่อมเสร็จเรียบร้อย</li>
-                                <li>หากลูกค้าไม่มารับเครื่องซ่อม ภายใน 30 วัน หลังจากที่ทางร้านได้แจ้งไป
+                                <li>หากลูกค้าไม่มารับเครื่องซ่อม ภายใน <?php if($sp_datepay="0"){
+                                    echo "30"; }else{echo $sp_datepay;}?> วัน หลังจากที่ทางร้านได้แจ้งไป
                                     ถือว่าลูกค้าได้ยินยอมให้ทางร้านนำเครื่องไปบริจาค หรือ
                                     ดำเนินการใดตามที่ทางร้านเห็นสมควร
                                     โดยที่ลูกค้าไม่ติดใจเรียกร้องใดๆ ทั้งสิ้น</li>
-                                <li>ทางร้านรับประกันเฉพาะค่าแรง ในอาการเดิมที่ซ่อมไป ภายในระยะเวลา 30 วัน
+                                <li>ทางร้านรับประกันเฉพาะค่าแรง ในอาการเดิมที่ซ่อมไป ภายในระยะเวลา
+                                    <?php if($sp_dateguarantee="0"){ echo "30";}else{ echo $sp_dateguarantee;}?>
+                                    วัน
                                     (การซ่อมเครื่องที่ตกกระแทก
                                     หรือ ตกน้ำ หรือ โดนความชื้น หรือ เคยซ่อมที่อื่นมาแล้ว หรือ
                                     ลูกค้าแกะเครื่องเองมาก่อนแล้ว
@@ -372,9 +382,9 @@ require "../inc/connect.php";
 
     </div>
     <!-- ./wrapper -->
-    <script>
+    <!--     <script>
     window.addEventListener("load", window.print());
-    </script>
+    </script> -->
     <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
     <script type="text/javascript">
